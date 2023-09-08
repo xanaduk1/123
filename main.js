@@ -1,3 +1,8 @@
+difference = 0;
+rightWristX = 0;
+lefttWristX = 0;
+
+
 function preload() {
 
 }
@@ -13,6 +18,10 @@ function setup() {
 }
 function draw() {
     background('#FF0000');
+
+    textSize(difference);
+    fill('#000000');
+    text('Change my size.', 230, 230);
 }
 
 function modelLoaded() {
@@ -25,5 +34,11 @@ function gotPoses(results)
 
     if (results.length > 0) {
         console.log(results);
+
+        leftWristX = results[0].pose.leftWrist.x;
+        rightWristX = results[0].pose.rightWrist.x;
+        difference = floor(leftWristX - rightWristX);
+
+        console.log("leftWristX = " + leftWristX + " rightWristX "+ rightWristX + " difference = " + difference);
     }
 }
